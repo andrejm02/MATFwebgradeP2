@@ -12,7 +12,7 @@ void greska(){
 
 int main(){
     char ulaz[63],rec[127];
-    int k, i;
+    int k;
     scanf("%s %d",ulaz,&k);
     FILE* fulaz, *izlaz;
 
@@ -26,7 +26,7 @@ int main(){
     while(fscanf(fulaz,"%s",rec) != EOF){
 
         if(strlen(rec) > k){
-            for(i = k; i < strlen(rec);i++){
+            for(int i = k; i < strlen(rec);i++){
                 fprintf(izlaz,"%c",rec[i]);
             }
             for(int j = 0; j < k; j++){
