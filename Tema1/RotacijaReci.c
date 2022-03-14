@@ -3,7 +3,6 @@
 //U slučaju greške na standardni izlaz za greške ispisati -1. Maksimalna dužina naziva datoteke je 63 karaktera.
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include <string.h>
 
 void greska(){
@@ -13,7 +12,7 @@ void greska(){
 
 int main(){
     char ulaz[63],rec[127];
-    int k;
+    int k, i;
     scanf("%s %d",ulaz,&k);
     FILE* fulaz, *izlaz;
 
@@ -25,21 +24,24 @@ int main(){
     }
     
     while(fscanf(fulaz,"%s",rec) != EOF){
+
         if(strlen(rec) > k){
-            for(int i = k; i < strlen(rec);i++){
+            for(i = k; i < strlen(rec);i++){
                 fprintf(izlaz,"%c",rec[i]);
-                if(i == strlen(rec)-1)
-                    for(int j = 0; j < k; j++)
-                        fprintf(izlaz,"%c",rec[j]);
+            }
+            for(int j = 0; j < k; j++){
+                fprintf(izlaz,"%c",rec[j]);
             }
         }else if(strlen(rec) == k){
             for(int i = 0; i < strlen(rec); i++){
                 fprintf(izlaz,"%c",rec[i]);
             }
-        }else
+        }else{
             for(int i = strlen(rec)-1; i >= 0; i--){
                 fprintf(izlaz,"%c",rec[i]);
             }
+        }
+
         fprintf(izlaz," ");
     }
 
